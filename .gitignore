@@ -1,0 +1,9 @@
+node_modules/
+out/
+dist/
+.vscode-test/
+.env
+.env.*
+*.vsix
+.DS_Store
+Thumbs.db
