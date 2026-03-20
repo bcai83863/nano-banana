@@ -20,15 +20,112 @@
       {
         "command": "nanoBanana.setGeminiApiKey",
         "title": "Nano Banana: Set Gemini API Key"
+      },
+      {
+        "command": "nanoBanana.selectCopilotPromptModel",
+        "title": "Nano Banana: Select Copilot Prompt Model"
+      },
+      {
+        "command": "nanoBanana.editImageWithReference",
+        "title": "Nano Banana: Edit Image with Reference"
+      },
+      {
+        "command": "nanoBanana.openImageEditor",
+        "title": "Nano Banana: Open Image Editor"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "nanoBanana.generateFromSelection",
+          "group": "nanoBanana@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .png || resourceExtname == .jpg || resourceExtname == .jpeg",
+          "command": "nanoBanana.openImageEditor",
+          "group": "nanoBanana@1"
+        },
+        {
+          "when": "resourceExtname == .png || resourceExtname == .jpg || resourceExtname == .jpeg",
+          "command": "nanoBanana.editImageWithReference",
+          "group": "nanoBanana@2"
+        }
+      ]
+    },
     "configuration": {
-      "title": "Nano Banana",
+      "title": "Nano Banana Image Generator",
       "properties": {
         "nanoBanana.modelId": {
           "type": "string",
+          "enum": [
+            "gemini-3-pro-image-preview",
+            "gemini-2.5-flash-image"
+          ],
           "default": "gemini-3-pro-image-preview",
           "description": "Gemini Model ID for image generation."
+        },
+        "nanoBanana.geminiApiBaseUrl": {
+          "type": "string",
+          "default": "https://generativelanguage.googleapis.com/v1beta",
+          "description": "Base URL for the Gemini API."
+        },
+        "nanoBanana.copilotPromptModel": {
+          "type": "string",
+          "default": "auto",
+          "description": "Copilot Language Model for prompt generation."
+        },
+        "nanoBanana.imageOutputFormat": {
+          "type": "string",
+          "enum": [
+            "png",
+            "jpeg",
+            "webp"
+          ],
+          "default": "png",
+          "description": "Output format for generated images."
+        },
+        "nanoBanana.outputDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Directory to save generated images. Leave empty to use system temp folder."
+        },
+        "nanoBanana.imageSize": {
+          "type": "string",
+          "enum": [
+            "1K",
+            "2K",
+            "4K"
+          ],
+          "default": "1K",
+          "description": "Size of the generated image."
+        },
+        "nanoBanana.defaultStyle": {
+          "type": "string",
+          "default": "article-cover",
+          "description": "Default style for image generation."
+        },
+        "nanoBanana.rememberLastStyle": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remember the last used style."
+        },
+        "nanoBanana.defaultAspectRatio": {
+          "type": "string",
+          "default": "1:1",
+          "description": "Default aspect ratio."
+        },
+        "nanoBanana.rememberLastAspectRatio": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remember the last used aspect ratio."
+        },
+        "nanoBanana.displayLanguage": {
+          "type": "string",
+          "default": "auto",
+          "description": "UI Display Language override."
         }
       }
     }
