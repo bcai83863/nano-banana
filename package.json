@@ -1,0 +1,52 @@
+{
+  "name": "nano-banana",
+  "displayName": "Nano Banana Image Generator",
+  "description": "Generate images with Gemini API and Copilot LM API.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nanoBanana.generateFromSelection",
+        "title": "Nano Banana: Generate Image from Selection"
+      },
+      {
+        "command": "nanoBanana.setGeminiApiKey",
+        "title": "Nano Banana: Set Gemini API Key"
+      }
+    ],
+    "configuration": {
+      "title": "Nano Banana",
+      "properties": {
+        "nanoBanana.modelId": {
+          "type": "string",
+          "default": "gemini-3-pro-image-preview",
+          "description": "Gemini Model ID for image generation."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "20.x",
+    "typescript": "^5.4.5",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/sdk": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0"
+  }
+}
